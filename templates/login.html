@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Sign In</h1>
+    <form method="POST" action="{{ url_for('login') }}" class="space-y-6">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-input", placeholder="Enter your username") }}
+            {% for error in form.username.errors %}
+                <span class="text-red-600 text-sm">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-input", placeholder="Enter your password") }}
+            {% for error in form.password.errors %}
+                <span class="text-red-600 text-sm">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit(class="btn btn-primary w-full") }}
+        </div>
+    </form>
+    <p class="mt-6 text-center text-gray-600">
+        New user? <a href="{{ url_for('register') }}" class="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md">Register here</a>.
+    </p>
+</div>
+{% endblock %}
